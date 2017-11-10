@@ -3,26 +3,34 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { StartPage } from "../pages/start/start";
+import {SearchComponent} from "../components/search/search";
+import {GenreComponent} from "../components/genre/genre";
+import {GenreCardComponent} from "../components/genre-card/genre-card";
+import {ApolloModule} from "apollo-angular";
+import { ApolloClient, createNetworkInterface } from 'apollo-client';
+import {GRAPHQL_ENDPOINT} from "../Constants/Constants";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    ListPage
+    StartPage,
+    ListPage,
+    SearchComponent,
+    GenreComponent,
+    GenreCardComponent
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
+    StartPage,
     ListPage
   ],
   providers: [
