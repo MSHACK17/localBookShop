@@ -1,19 +1,9 @@
-﻿using System;
-using System.Data;
-using System.Diagnostics.SymbolStore;
-using System.Globalization;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Reflection.Emit;
-using System.Threading;
-using System.Threading.Tasks;
-using LocalBookShopImport.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
-using RestSharp;
+﻿﻿using System;
+ using System.Globalization;
+ using System.Linq;
+ using LocalBookShopImport.Models;
+ using Newtonsoft.Json.Linq;
+ using RestSharp;
 
 namespace LocalBookShopImport
 {

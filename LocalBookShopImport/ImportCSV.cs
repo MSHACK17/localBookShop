@@ -48,7 +48,14 @@ namespace LocalBookShopImport
 
             if (book == null)
             {
-                book = api.SearchBook(bookIsbn).Result;
+                book = api.SearchBook(bookIsbn);
+
+                // Kein Buch per API gefunden
+                if (book == null)
+                {
+                    return;
+                }
+                
                 Database.Save(book);
             }
 
