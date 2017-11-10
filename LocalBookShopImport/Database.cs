@@ -32,5 +32,10 @@ namespace LocalBookShopImport
         {
             return DbConnection.Dispense(table.ToString().ToLower());
         }
+
+        public static Bean findBook(string isbn)
+        {
+            return DbConnection.FindOne("book", "where isbn_10 = {0} or isbn_13 = {0}", isbn);
+        }
     }
 }
