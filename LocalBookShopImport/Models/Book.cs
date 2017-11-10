@@ -34,7 +34,7 @@ namespace LocalBookShopImport.Models
         }
 
         public Author Author { get; set; }
-        private int Id => Get<int>("id");
+        public int Id => Get<int>("id");
 
         public string Title
         {

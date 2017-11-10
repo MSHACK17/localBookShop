@@ -1,7 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
 using System.IO;
-using System.Linq.Expressions;
+using LocalBookShopImport.Models;
 
 namespace LocalBookShopImport
 {
@@ -23,10 +22,10 @@ namespace LocalBookShopImport
                         var book = Database.findBook(line[0]);
                         if (book != null)
                         {
-                            var storage = Database.Create(Table.Storage);
-                            storage["id_shop"] = shopId;
-                            storage["id_book"] = book["id"];
-                            storage["amount"] = line[1];
+                            var storage = Database.CreateBeam<Storage>();
+                            storage.ShopId = shopId;
+                            storage.BookId = book.Id;
+                            storage.amount = int.Parse(line[1]);
                             Database.Save(storage);
                         }
                     }

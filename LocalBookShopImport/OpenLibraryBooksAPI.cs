@@ -89,7 +89,7 @@ namespace LocalBookShopImport
                 
                 
                 
-                Console.WriteLine(author);
+                //Console.WriteLine(author);
                 Console.WriteLine(title);
                 
                 

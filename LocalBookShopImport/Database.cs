@@ -1,4 +1,5 @@
 ﻿using LimeBean;
+using LocalBookShopImport.Models;
 using Npgsql;
 
 namespace LocalBookShopImport
@@ -32,9 +33,10 @@ namespace LocalBookShopImport
             return DbConnection.Dispense<T>();
         }
 
-        public static Bean findBook(string isbn)
+        public static Book findBook(string isbn)
         {
-            return DbConnection.FindOne("book", "where isbn_10 = {0} or isbn_13 = {0}", isbn);
+            return DbConnection.FindOne<Book>("book", "where isbn_10 = {0} or isbn_13 = {0}", isbn);
         }
+        
     }
 }
