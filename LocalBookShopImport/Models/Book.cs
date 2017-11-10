@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using LimeBean;
 
@@ -8,32 +9,37 @@ namespace LocalBookShopImport.Models
     {
         public Book() : base("book") { }
 
-        protected override void BeforeStore()
-        {
-            if (string.IsNullOrWhiteSpace(Author?.Url))
-            {
-                throw new Exception("Author is empty!");
-            }
-        }
-
         protected override void AfterStore()
         {
-            var author = GetApi().FindOne<Author>("WHERE ob_url = {0}", Author.Url);
-
-            if (author == null)
+            GetApi().Transaction(() =>
             {
-                GetApi().Store(Author);
-                author = Author;
-            }
+                foreach (var author in Authors)
+                {
+                    if (string.IsNullOrWhiteSpace(author?.Url))
+                    {
+                        return false;
+                    }
+                    
+                    var dbAuthor = GetApi().FindOne<Author>("WHERE ob_url = {0}", author.Url);
 
-            var relation = GetApi().Dispense("book_author");
-            relation["id_author"] = author.Id;
-            relation["id_book"] = Id;
+                    if (dbAuthor == null)
+                    {
+                        GetApi().Store(author);
+                        dbAuthor = author;
+                    }
 
-            GetApi().Store(relation);
+                    var relation = GetApi().Dispense("book_author");
+                    relation["id_author"] = dbAuthor.Id;
+                    relation["id_book"] = Id;
+
+                    GetApi().Store(relation);
+                }
+
+                return true;
+            });
         }
 
-        public Author Author { get; set; }
+        public List<Author> Authors { get; set; }
         public int Id => Get<int>("id");
 
         public string Title

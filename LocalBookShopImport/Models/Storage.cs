@@ -20,7 +20,7 @@ namespace LocalBookShopImport.Models
             set { Put("id_book", value); }
         }
         
-        public int amount
+        public int Amount
         {
             get { return Get<int>("amount"); }
             set { Put("amount", value); }

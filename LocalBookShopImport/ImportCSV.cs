@@ -7,41 +7,62 @@ namespace LocalBookShopImport
     public class ImportCSV
     {
         private StreamReader csvReader;
+        private OpenLibraryBooksAPI api = new OpenLibraryBooksAPI();
 
-        public Boolean readCSV(string path, int shopId)
+        public bool ReadCsv(string path, int shopId)
         {
             try
             {
                 if (File.Exists(path))
                 {
                     csvReader = new StreamReader(path);
-                    String[] line;
-                    while (csvReader.Peek() >= 0)
+                    string line;
+                    
+                    while ((line = csvReader.ReadLine()) != null)
                     {
-                        line = csvReader.ReadLine().Split(';');
-                        var book = Database.findBook(line[0]);
-                        if (book != null)
+                        var split = csvReader.ReadLine()?.Split(';');
+
+                        if (split != null && line.Length == 2)
                         {
-                            var storage = Database.CreateBeam<Storage>();
-                            storage.ShopId = shopId;
-                            storage.BookId = book.Id;
-                            storage.amount = int.Parse(line[1]);
-                            Database.Save(storage);
+                            InsertBookRelation(shopId, split[0], int.Parse(split[1]));
                         }
                     }
+
+                    return true;
                 }
-                else
-                {
-                    Console.WriteLine("CSV-Datei nicht gefunden!");
-                    return false;
-                }
-                return true;
+
+                Console.WriteLine("CSV-Datei nicht gefunden!");
+                return false;
             }
             catch (Exception e)
             {
-                Console.WriteLine("Fehler: " + e.ToString());
+                Console.WriteLine("Fehler: " + e);
             }
+
             return false;
-        }        
+        }
+
+        private void InsertBookRelation(int shopId, string bookIsbn, int amount)
+        {
+            var book = Database.FindBook(bookIsbn);
+
+            if (book == null)
+            {
+                book = api.SearchBook(bookIsbn).Result;
+                Database.Save(book);
+            }
+
+            var relation = Database.FindStoreRelation(shopId, book.Id);
+
+            if (relation == null)
+            {
+                relation = Database.CreateBeam<Storage>();
+                relation.ShopId = shopId;
+                relation.BookId = book.Id;
+            }
+            
+            relation.Amount = amount;
+            Database.Save(relation);
+        }
     }
 }
