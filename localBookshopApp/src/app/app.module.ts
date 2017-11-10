@@ -8,6 +8,11 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {Apollo, ApolloModule} from "apollo-angular";
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+import {HttpClientModule} from "@angular/common/http";
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
 
 @NgModule({
   declarations: [
@@ -18,6 +23,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule,
+    ApolloModule,
+    HttpLinkModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -31,4 +39,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(
+    apollo: Apollo,
+    httpLink: HttpLink
+  ) {
+    apollo.create({
+      link: httpLink.create({ uri: 'http://172.16.2.200:5000/graphql' }),
+      cache: new InMemoryCache()
+    });
+  }
+}
