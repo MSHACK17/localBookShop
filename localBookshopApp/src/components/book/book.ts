@@ -12,15 +12,10 @@ import {Book} from "../../models/book";
   templateUrl: 'book.html'
 })
 export class BookComponent {
-
-  text: string;
-
   @Input() book:Book;
-
-
   constructor() {
+
     console.log('Hello BookComponent Component');
-    this.text = 'Hello World';
   }
 
 }
