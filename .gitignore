@@ -1,0 +1,7 @@
+# JetBrains IDE
+.idea/
+*/.idea/
+
+# C-Sharp
+LocalBookShopImport/bin
+LocalBookShopImport/obj
