@@ -4,8 +4,13 @@ using Npgsql;
 
 namespace LocalBookShopImport
 {
-    public static class Database
+    public enum Table
     {
+        Author, Book, Genre, Publisher, Shop, Storage   
+    }
+    
+    public static class Database
+    {        
         private static readonly BeanApi DbConnection;
         
         static Database()
@@ -23,9 +28,9 @@ namespace LocalBookShopImport
             return (int)DbConnection.Store(item);
         }
 
-        public static Bean GetBook()
+        public static Bean Create(Table table)
         {
-            return DbConnection.Dispense("book");
+            return DbConnection.Dispense(table.ToString().ToLower());
         }
     }
 }
