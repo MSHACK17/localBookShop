@@ -7,6 +7,7 @@ namespace LocalBookShopImport
     {
         public static void Main(string[] args)
         {
+            
         }
     }
 }
