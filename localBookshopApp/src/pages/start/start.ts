@@ -26,8 +26,7 @@ export class StartPage {
           }
       }`
     }).subscribe(({data, loading}) => {
-      this.data = data;
-      this.loading = loading;
+      console.log(data)
     });
   }
 

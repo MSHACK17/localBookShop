@@ -2,18 +2,17 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { ListPage } from '../pages/list/list';
 import {StartPage} from "../pages/start/start";
-import {GRAPHQL_ENDPOINT} from "../Constants/Constants";
+import {SearchResultPage} from "../pages/search-result/search-result";
+
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
   rootPage: any = StartPage;
+
 
   pages: Array<{title: string, component: any}>;
 
@@ -22,9 +21,9 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Start', component: StartPage },
-      { title: 'List', component: ListPage }
-    ];
+    { title: 'Start', component: StartPage },
+      { title: 'Result', component: SearchResultPage }
+      ];
 
 
   }

@@ -1,7 +1,5 @@
 import {Component} from '@angular/core';
 import {NavController} from "ionic-angular";
-import {ListPage} from "../../pages/list/list";
-
 /**
  * Generated class for the GenreComponent component.
  *
@@ -22,7 +20,7 @@ export class GenreComponent {
   }
 
   goToPage(){
-    this.navController.push(ListPage)
+
   }
 
 }
