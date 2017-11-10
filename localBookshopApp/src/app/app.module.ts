@@ -11,6 +11,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {BookListComponent} from "../components/book-list/book-list";
 import {BookComponent} from "../components/book/book";
 import {SearchResultPage} from "../pages/search-result/search-result";
+import {DetailPage} from "../pages/detail/detail";
+import {BookDetailComponent} from "../components/book-detail/book-detail";
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import {SearchResultPage} from "../pages/search-result/search-result";
     ListPage,
     BookListComponent,
     BookComponent,
-    SearchResultPage
+    BookDetailComponent,
+    SearchResultPage,
+    DetailPage
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,8 @@ import {SearchResultPage} from "../pages/search-result/search-result";
     MyApp,
     HomePage,
     ListPage,
-    SearchResultPage
+    SearchResultPage,
+    DetailPage
   ],
   providers: [
 
