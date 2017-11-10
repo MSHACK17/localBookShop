@@ -1,34 +1,31 @@
 ﻿using System;
+using LimeBean;
 using Npgsql;
 
 namespace LocalBookShopImport
 {
     public static class Database
     {
-        static readonly NpgsqlConnection dbConnection;
+        private static readonly BeanApi DbConnection;
         
         static Database()
-        {
-            dbConnection =
+        {            
+            var connection =
                 new NpgsqlConnection(
                     "Host=172.16.2.200;Port=5432;Username=book_system;Password=book123;Database=local_book_shop;");
+            connection.Open();
             
-            dbConnection.Open();
+            DbConnection = new BeanApi(connection); 
         }
-                
-        public static bool insertBook()
+
+        public static int Save(Bean item)
         {
-            try
-            {
-                dbConnection.Open();
-                
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Fehler: " + e);
-                return false;
-            }
+            return (int)DbConnection.Store(item);
+        }
+
+        public static Bean GetBook()
+        {
+            return DbConnection.Dispense("book");
         }
     }
 }

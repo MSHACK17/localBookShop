@@ -7,7 +7,10 @@ namespace LocalBookShopImport
     {
         public static void Main(string[] args)
         {
-            Database.insertBook();
+            var book = Database.GetBook();
+            book["title"] = "test! ;)";
+
+            Database.Save(book);
         }
     }
 }
