@@ -1,5 +1,4 @@
-﻿using System;
-using LimeBean;
+﻿using LimeBean;
 using Npgsql;
 
 namespace LocalBookShopImport
@@ -28,9 +27,9 @@ namespace LocalBookShopImport
             return (int)DbConnection.Store(item);
         }
 
-        public static Bean Create(Table table)
+        public static T CreateBeam<T>()  where T : Bean, new()
         {
-            return DbConnection.Dispense(table.ToString().ToLower());
+            return DbConnection.Dispense<T>();
         }
     }
 }
