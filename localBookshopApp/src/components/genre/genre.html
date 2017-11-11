@@ -1,16 +1,7 @@
 <ion-grid>
   <ion-row>
-    <ion-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4>
-      <genre-card (click)="goToPage()"></genre-card>
-    </ion-col>
-    <ion-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4>
-      <genre-card></genre-card>
-    </ion-col>
-    <ion-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4>
-      <genre-card></genre-card>
-    </ion-col>
-    <ion-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4>
-      <genre-card></genre-card>
+    <ion-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 *ngFor="let genre of genres">
+      <genre-card [genre]="genre" (click)="goToPage()"></genre-card>
     </ion-col>
   </ion-row>
 </ion-grid>

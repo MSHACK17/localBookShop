@@ -12,11 +12,8 @@ import { Component } from '@angular/core';
 })
 export class SearchComponent {
 
-  text: string;
 
   constructor() {
-    console.log('Hello SearchComponent Component');
-    this.text = 'Hello World';
   }
 
 }
