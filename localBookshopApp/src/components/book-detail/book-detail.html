@@ -1,13 +1,15 @@
- <h2>{{book.title}}</h2>
-    <p>{{book.publicationDate | date: 'dd.MM.yyyy'}}</p>
-    <p *ngFor="let author of book.authorsbybook.nodes">{{author.name}}</p>
-    <img [src]="book.imageUrl">
+ <h2>{{book?.title}}</h2>
+    <p>{{book?.publicationDate | date: 'dd.MM.yyyy'}}</p>
+    <p *ngFor="let author of book?.authorsbybook?.nodes">{{author.name}}</p>
+    <img *ngIf="book?.imageUrl" [src]="book?.imageUrl">
+    <img *ngIf="!book?.imageUrl" src="/assets/imgs/no-cover.png">
+    <p>{{book?.description}}</p>
 
-    <p>{{book.description}}</p>
+    <agm-map  [zoom]="12" [latitude]="lat" [longitude]="lng">
+      <agm-marker [iconUrl]="'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'" [latitude]="lat" [longitude]="lng"></agm-marker>
 
-    <agm-map  [zoom]="15" [latitude]="lat" [longitude]="lng">
-      <agm-circle [radius]="30"  [latitude]="lat" [longitude]="lng" [fillColor]="fillColor" [strokeColor]="'#FF0000'" [strokeOpacity]="0.5" [strokeWeight]="3"></agm-circle>
-      <agm-marker label="title" [latitude]="51.953308" [longitude]="7.644517"  (markerClick)="showInfo(shop)"></agm-marker>
-      <agm-marker [latitude]="52" [longitude]="8"></agm-marker>
+
+      <agm-marker *ngFor="let shop of shopObjects" [label]="shop.name" [latitude]="shop.position?.lat" [longitude]="shop.position?.long" (markerClick)="showShopDetail(shop)"></agm-marker>
 
     </agm-map>
+

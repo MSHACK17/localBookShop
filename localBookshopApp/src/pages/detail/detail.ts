@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Book} from "../../models/book";
+import {Shop} from "../../models/shop";
 
 /**
  * Generated class for the DetailPage page.
@@ -17,9 +18,12 @@ import {Book} from "../../models/book";
 export class DetailPage {
 
   book:Book;
+  shops: Shop[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.book = navParams.data;
+    this.book = navParams.data.book;
+    this.shops= navParams.data.shops;
+    console.log(this.shops)
   };
 
 
