@@ -36,8 +36,12 @@
     <Reference Include="LimeBean, Version=1.2.7.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>packages\LimeBean.1.2.7\lib\net40\LimeBean.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy, Version=1.4.4.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>packages\Nancy.1.4.4\lib\net40\Nancy.dll</HintPath>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Nancy, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\Nancy.2.0.0-clinteastwood\lib\net452\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Hosting.Self, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\Nancy.Hosting.Self.2.0.0-clinteastwood\lib\net452\Nancy.Hosting.Self.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
       <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -70,10 +74,11 @@
     <Compile Include="Model\Genre.cs" />
     <Compile Include="Model\Publisher.cs" />
     <Compile Include="Model\Storage.cs" />
+    <Compile Include="NancySelfHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OpenLibraryBooksAPI.cs" />
-    <Compile Include="WebServer.cs" />
+    <Compile Include="NancyWebpage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -7,10 +7,11 @@ namespace LocalBookShopImport
     {
         public static void Main(string[] args)
         {
-            //OpenLibraryBooksAPI api = new OpenLibraryBooksAPI();
-            //var book = api.SearchBook("");
-            //Database.Save(book);
-
+            /*
+            OpenLibraryBooksAPI api = new OpenLibraryBooksAPI();
+            var book = api.SearchBook("");
+            Database.Save(book);
+            */
             /*
             var book = Database.CreateBeam<Book>();
             book.Title = "tt";
@@ -33,6 +34,12 @@ namespace LocalBookShopImport
             {
                 Console.WriteLine("Import nicht erfolgreich");
             }
+            //NancySelfHost host = new NancySelfHost();
+            //host.Start();
+            //Console.ReadKey();
+            //host.Stop();
+
+
             
         }
     }
