@@ -7,9 +7,9 @@ namespace LocalBookShopImport
     {
         public static void Main(string[] args)
         {
-            OpenLibraryBooksAPI api = new OpenLibraryBooksAPI();
-            var book = api.SearchBook("");
-            Database.Save(book);
+            //OpenLibraryBooksAPI api = new OpenLibraryBooksAPI();
+            //var book = api.SearchBook("");
+            //Database.Save(book);
 
             /*
             var book = Database.CreateBeam<Book>();
@@ -23,9 +23,9 @@ namespace LocalBookShopImport
 
             Database.Save(book);
             */
-            /*
+            
             ImportCSV importCsv = new ImportCSV();
-            if (importCsv.ReadCsv(1, @"..\..\buecher.csv"))
+            if (importCsv.ReadCsv(4, @"..\..\buecher.csv"))
             {
                 Console.WriteLine("Import erfolgreich");
             }
@@ -33,7 +33,7 @@ namespace LocalBookShopImport
             {
                 Console.WriteLine("Import nicht erfolgreich");
             }
-            */
+            
         }
     }
 }

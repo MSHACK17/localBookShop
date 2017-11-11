@@ -39,7 +39,7 @@ namespace LocalBookShopImport
                     return false;
                 }
                 
-                while ((line = csvReader.ReadLine()) != null)
+                while (csvReader.Peek() >= 0)
                 {
                     var split = csvReader.ReadLine()?.Split(';');
 
