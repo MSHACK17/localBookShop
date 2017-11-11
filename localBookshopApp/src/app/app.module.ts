@@ -18,6 +18,7 @@ import {Apollo, ApolloModule} from "apollo-angular";
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import {HttpClientModule} from "@angular/common/http";
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import {AgmCoreModule} from "@agm/core";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,12 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     ApolloModule,
-    HttpLinkModule
+    HttpLinkModule,
+    AgmCoreModule.forRoot({
+
+      apiKey: 'AIzaSyD29ws1Qewk5R_SQgkYRg3_qw8wLiRPWN4'
+
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

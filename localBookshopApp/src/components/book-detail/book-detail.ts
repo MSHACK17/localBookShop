@@ -1,6 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component,  Input} from '@angular/core';
 import {Book} from "../../models/book";
-import {NavParams} from "ionic-angular";
 
 /**
  * Generated class for the BookDetailComponent component.
@@ -14,9 +13,30 @@ import {NavParams} from "ionic-angular";
 })
 export class BookDetailComponent {
 
+  title: string = 'Google Maps Addeed Successfully';
+
+  lat: number = 51.950139;
+
+  lng: number = 7.638549;
+
+  strokeColor: '#FF0000';
+  fillColor: '#FF0000';
+
+  shop:{title:"test"};
+
+
+
+
   @Input() book:Book;
 
   constructor() {
+  }
+  ngAfterContentInit(){
+    console.info("load");
+
+  }
+  showInfo(shop:any){
+    console.info(shop.title);
   }
 
 }

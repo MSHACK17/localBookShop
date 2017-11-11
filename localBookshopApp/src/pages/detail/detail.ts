@@ -20,9 +20,8 @@ export class DetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.book = navParams.data;
-  }
+  };
 
-  ionViewDidLoad() {
-  }
+
 
 }

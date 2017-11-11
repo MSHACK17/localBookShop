@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {DetailPage} from "../pages/detail/detail";
 import {StartPage} from "../pages/start/start";
-import {SearchResultPage} from "../pages/search-result/search-result";
 
 
 @Component({

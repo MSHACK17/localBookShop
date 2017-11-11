@@ -4,3 +4,9 @@
 
     <p>{{book.description}}</p>
 
+    <agm-map  [zoom]="15" [latitude]="lat" [longitude]="lng">
+      <agm-circle [radius]="30"  [latitude]="lat" [longitude]="lng" [fillColor]="fillColor" [strokeColor]="'#FF0000'" [strokeOpacity]="0.5" [strokeWeight]="3"></agm-circle>
+      <agm-marker label="title" [latitude]="51.953308" [longitude]="7.644517"  (markerClick)="showInfo(shop)"></agm-marker>
+      <agm-marker [latitude]="52" [longitude]="8"></agm-marker>
+
+    </agm-map>
