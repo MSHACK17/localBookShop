@@ -12,6 +12,7 @@ genre-card {
     width: 100%;
     font-weight: bold;
     color: #fff;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   }
 
   .card-subtitle {
@@ -20,5 +21,9 @@ genre-card {
     top: 52%;
     width: 100%;
     color: #fff;
+  }
+
+  .image{
+    filter: grayscale(100%)
   }
 }

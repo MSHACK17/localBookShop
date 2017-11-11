@@ -32,7 +32,12 @@ export class GenreComponent {
               description,
               imageUrl,
               publicationDate,
-              isbn10
+              isbn10,
+              authorsbybook{
+                nodes{
+                  name
+                }
+              }
             }
           }
         } 

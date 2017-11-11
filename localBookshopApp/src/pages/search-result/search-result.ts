@@ -23,6 +23,7 @@ export class SearchResultPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     let searchResult:SearchResult = navParams.data;
     this.books = searchResult.books;
+    console.log(this.books)
     this.resultName = searchResult.resultName;
   }
 

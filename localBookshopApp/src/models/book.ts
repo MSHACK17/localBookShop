@@ -3,10 +3,13 @@ import {Author} from "./author";
 import {Genre} from "./genre";
 
 export interface Book {
-  author: Author;
   genre: Genre;
-  titel: string;
+  title: string;
   description: string;
-  picture: string;
-  releaseDate: string;
+  imageUrl: string;
+  publicationDate: string;
+  isbn10: string,
+  authorsbybook: {
+    nodes:Author[]
+  }
 }

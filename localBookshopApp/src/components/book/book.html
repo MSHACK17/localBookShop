@@ -1,8 +1,9 @@
 <ion-card (click)="showBookDetail()">
-  <img [src]="book.picture">
+  <img *ngIf="book.imageUrl" [src]="book.imageUrl">
+  <img *ngIf="!book.imageUrl" src="/assets/imgs/no-cover.png">
   <ion-item>
-    <h2>{{book.titel}}</h2>
-    <p>{{book.author?.name}}, {{book.releaseDate | date: 'dd.MM.yyyy'}}</p>
+    <h2>{{book.title}}</h2>
+    <p>{{book.authorsbybook?.nodes[0]?.name}}, {{book.publicationDate | date: 'dd.MM.yyyy'}}</p>
   </ion-item>
   <ion-card-content>
     <p>{{book.description | slice:0:100}}...</p>

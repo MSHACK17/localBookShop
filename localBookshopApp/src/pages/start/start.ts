@@ -25,7 +25,8 @@ export class StartPage {
           genres:allGenres {
             nodes{
               id,
-              name
+              name,
+              imageUrl
             }
           }
       }`
