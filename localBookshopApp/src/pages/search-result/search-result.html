@@ -6,14 +6,13 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>searchResult</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>{{resultName}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
   <book-list [books]="books"></book-list>
-
 </ion-content>
