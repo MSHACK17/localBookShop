@@ -4,6 +4,8 @@ import {NavController} from "ionic-angular";
 import {DetailPage} from "../../pages/detail/detail";
 import {Apollo} from "apollo-angular";
 import gql from "graphql-tag";
+import {Shop} from "../../models/shop";
+import {getLocaleTimeFormat} from "@angular/common";
 
 /**
  * Generated class for the BookComponent component.

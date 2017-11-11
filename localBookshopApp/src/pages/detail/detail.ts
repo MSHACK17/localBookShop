@@ -23,6 +23,7 @@ export class DetailPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.book = navParams.data.book;
     this.shops= navParams.data.shops;
+    console.log(this.shops)
   };
 
 
