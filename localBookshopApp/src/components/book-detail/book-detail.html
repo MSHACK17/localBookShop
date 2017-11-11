@@ -41,10 +41,16 @@
            Buchladen
          </ion-col>
          <ion-col width-30>
-            Fahrtzeit
+           <ion-row>
+             <ion-col></ion-col>
+             <ion-col>
+               <ion-icon style="" name="bicycle"></ion-icon>
+             </ion-col>
+             <ion-col></ion-col>
+           </ion-row>
          </ion-col>
          <ion-col width-30>
-            Entfernung
+            Bestand
          </ion-col>
        </ion-row>
        <ion-row *ngFor="let shop of shopObjects">
@@ -55,7 +61,7 @@
            {{shop.duration}}
          </ion-col>
          <ion-col width-30>
-           {{shop.distance}}
+           {{shop.amount}}
          </ion-col>
        </ion-row>
      </ion-list>
