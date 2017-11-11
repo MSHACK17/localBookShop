@@ -1,7 +1,7 @@
     <h2>{{book.title}}</h2>
     <p>{{book.publicationDate | date: 'dd.MM.yyyy'}}</p>
-    <p *ngFor="let author of book.authorsbybook.nodes">{{author.name}}</p>
-    <img [src]="book.imageUrl">
+    <p *ngFor="let author of book.authorsbybook?.nodes">{{author.name}}</p>
+    <img *ngIf="!book.imageUrl" src="/assets/imgs/no-cover.png">
 
     <p>{{book.description}}</p>
 
