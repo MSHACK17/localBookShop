@@ -1,5 +1,6 @@
 import {Component,  Input} from '@angular/core';
 import {Book} from "../../models/book";
+import {sharedStylesheetJitUrl} from "@angular/compiler";
 
 /**
  * Generated class for the BookDetailComponent component.
@@ -32,7 +33,7 @@ export class BookDetailComponent {
   constructor() {
   }
   ngAfterContentInit(){
-    console.info("load");
+    console.info(this.book);
 
   }
   showInfo(shop:any){

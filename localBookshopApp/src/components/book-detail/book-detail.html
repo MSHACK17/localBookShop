@@ -1,6 +1,7 @@
-    <h2>{{book.titel}}</h2>
-    <p>{{book.author?.name}}, {{book.releaseDate | date: 'dd.MM.yyyy'}}</p>
-    <img [src]="book.picture">
+    <h2>{{book.title}}</h2>
+    <p>{{book.publicationDate | date: 'dd.MM.yyyy'}}</p>
+    <p *ngFor="let author of book.authorsbybook.nodes">{{author.name}}</p>
+    <img [src]="book.imageUrl">
 
     <p>{{book.description}}</p>
 
