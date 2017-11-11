@@ -68,7 +68,7 @@ export class BookDetailComponent {
           id:  shop.id,
           name: shop. name,
           duration: data['rows'][0].elements[position].duration.text,
-          durationSort: data['rows'][0].elements[position].distance.value,
+          durationSort: data['rows'][0].elements[position].duration.value,
           distance: data['rows'][0].elements[position].distance.text,
           city: shop.city,
           zip: shop.zip,
@@ -77,19 +77,18 @@ export class BookDetailComponent {
           amount: shop.amount
         })
       })
+      this.shopObjects.sort(function (a, b) {
+        if (a.durationSort > b.durationSort) {
+          return 1;
+        }
+        if (a.durationSort < b.durationSort) {
+          return -1;
+        }
+        // a muss gleich b sein
+        return 0;
+      });
+      console.log(this.shopObjects);
     });
-
-    this.shopObjects.sort(function (a, b) {
-      if (a.durationSort > b.durationSort) {
-        return 1;
-      }
-      if (a.durationSort < b.durationSort) {
-        return -1;
-      }
-      // a muss gleich b sein
-      return 0;
-    });
-  console.log(this.shopObjects);
   }
   showShopDetail(shop:any){
     let modal = this.modalCtrl.create(ShopDetailPage, {shop: shop, book: this.book});
