@@ -5,11 +5,6 @@ using Npgsql;
 
 namespace LocalBookShopImport
 {
-    public enum Table
-    {
-        Author, Book, Genre, Publisher, Shop, Storage   
-    }
-    
     public static class Database
     {        
         private static readonly BeanApi DbConnection;

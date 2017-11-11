@@ -1,11 +1,9 @@
-<ion-card>
+<ion-card (click)="showBookDetail()">
+  <img [src]="book.picture">
   <ion-item>
     <h2>{{book.titel}}</h2>
     <p>{{book.author?.name}}, {{book.releaseDate | date: 'dd.MM.yyyy'}}</p>
   </ion-item>
-
-  <img [src]="book.picture">
-
   <ion-card-content>
     <p>{{book.description | slice:0:100}}...</p>
   </ion-card-content>
