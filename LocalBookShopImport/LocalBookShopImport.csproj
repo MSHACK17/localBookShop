@@ -67,6 +67,8 @@
     <Compile Include="ImportCSV.cs" />
     <Compile Include="Model\Author.cs" />
     <Compile Include="Model\Book.cs" />
+    <Compile Include="Model\Genre.cs" />
+    <Compile Include="Model\Publisher.cs" />
     <Compile Include="Model\Storage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Genre} from "../../models/genre";
 
 /**
  * Generated class for the GenreCardComponent component.
@@ -12,11 +13,10 @@ import { Component } from '@angular/core';
 })
 export class GenreCardComponent {
 
-  text: string;
+  @Input('genre') genre: Genre;
 
   constructor() {
-    console.log('Hello GenreCardComponent Component');
-    this.text = 'Hello World';
+
   }
 
 }
