@@ -47,11 +47,27 @@ namespace LocalBookShopImport.Model
 
                 GetApi().Store(relation);
             }
+
+            if (!string.IsNullOrWhiteSpace(Publisher))
+            {
+                var publisher = Database.FindPublisher(Publisher);
+
+                if (publisher != null)
+                {
+                    var relation = GetApi().Dispense("book_publisher");
+                    relation["id_publisher"] = publisher.Id;
+                    relation["id_book"] = Id;
+
+                    Database.Save(relation);
+                }
+            }
         }
 
         public List<Author> Authors = new List<Author>();
         
         public List<string> Genre = new List<string>();
+
+        public string Publisher;
         
         public int Id => Get<int>("id");
 

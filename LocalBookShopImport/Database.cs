@@ -53,9 +53,14 @@ namespace LocalBookShopImport
             }
         }
 
-        public static Genre FindGenre(string ObUrl)
+        public static Genre FindGenre(string obUrl)
         {
-            return DbConnection.FindOne<Genre>("WHERE ob_url = {0}", ObUrl);
+            return DbConnection.FindOne<Genre>("WHERE ob_url = {0}", obUrl);
+        }
+        
+        public static Publisher FindPublisher(string name)
+        {
+            return DbConnection.FindOne<Publisher>("WHERE name = {0}", name);
         }
     }
 }
