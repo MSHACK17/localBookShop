@@ -10,37 +10,65 @@ namespace LocalBookShopImport.Model
 
         protected override void AfterStore()
         {
-            //GetApi().Transaction(() =>
-            //{
-            if (Authors != null)
+            foreach (var author in Authors)
             {
-                foreach (var author in Authors)
+                if (string.IsNullOrWhiteSpace(author?.Url))
                 {
-                    if (string.IsNullOrWhiteSpace(author?.Url))
-                    {
-                        continue;
-                    }
-
-                    var dbAuthor = GetApi().FindOne<Author>("WHERE ob_url = {0}", author.Url);
-
-                    if (dbAuthor == null)
-                    {
-                        GetApi().Store(author);
-                        dbAuthor = author;
-                    }
-
-                    var relation = GetApi().Dispense("book_author");
-                    relation["id_author"] = dbAuthor.Id;
-                    relation["id_book"] = Id;
-
-                    GetApi().Store(relation);
+                    continue;
                 }
+
+                var dbAuthor = GetApi().FindOne<Author>("WHERE ob_url = {0}", author.Url);
+
+                if (dbAuthor == null)
+                {
+                    GetApi().Store(author);
+                    dbAuthor = author;
+                }
+
+                var relation = GetApi().Dispense("book_author");
+                relation["id_author"] = dbAuthor.Id;
+                relation["id_book"] = Id;
+
+                GetApi().Store(relation);
             }
 
-            //});
+            foreach (var genreUrl in Genre)
+            {
+                var genre = Database.FindGenre(genreUrl);
+
+                if (genre == null)
+                {
+                    continue;
+                }
+
+                var relation = GetApi().Dispense("book_genre");
+                relation["id_genre"] = genre.Id;
+                relation["id_book"] = Id;
+
+                GetApi().Store(relation);
+            }
+
+            if (!string.IsNullOrWhiteSpace(Publisher))
+            {
+                var publisher = Database.FindPublisher(Publisher);
+
+                if (publisher != null)
+                {
+                    var relation = GetApi().Dispense("book_publisher");
+                    relation["id_publisher"] = publisher.Id;
+                    relation["id_book"] = Id;
+
+                    Database.Save(relation);
+                }
+            }
         }
 
-        public List<Author> Authors { get; set; }
+        public List<Author> Authors = new List<Author>();
+        
+        public List<string> Genre = new List<string>();
+
+        public string Publisher;
+        
         public int Id => Get<int>("id");
 
         public string Title
