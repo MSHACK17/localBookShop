@@ -1,7 +1,7 @@
 ﻿﻿using System;
  using System.Globalization;
  using System.Linq;
- using LocalBookShopImport.Models;
+ using LocalBookShopImport.Model;
  using Newtonsoft.Json.Linq;
  using RestSharp;
 

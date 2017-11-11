@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using LimeBean;
 
-namespace LocalBookShopImport.Models
+namespace LocalBookShopImport.Model
 {
     public class Book : Bean
     {

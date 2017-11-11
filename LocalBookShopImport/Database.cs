@@ -1,5 +1,5 @@
 ﻿using LimeBean;
-using LocalBookShopImport.Models;
+using LocalBookShopImport.Model;
 using Npgsql;
 
 namespace LocalBookShopImport

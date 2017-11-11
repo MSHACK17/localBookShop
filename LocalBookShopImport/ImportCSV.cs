@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using LocalBookShopImport.Models;
+using LocalBookShopImport.Model;
 
 namespace LocalBookShopImport
 {

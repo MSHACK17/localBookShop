@@ -1,6 +1,6 @@
 ﻿using LimeBean;
 
-namespace LocalBookShopImport.Models
+namespace LocalBookShopImport.Model
 {
     public class Storage : Bean
     {
