@@ -19,11 +19,12 @@ export class StartPage {
 
   genres: Genre[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private apollo: Apollo) {
+  constructor(private apollo: Apollo) {
     this.apollo.query({
       query: gql`{
           genres:allGenres {
             nodes{
+              id,
               name
             }
           }

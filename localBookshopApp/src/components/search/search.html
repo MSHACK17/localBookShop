@@ -2,7 +2,10 @@
   <ion-card-content>
     <ion-item>
       <ion-label> <ion-icon name="search"></ion-icon></ion-label>
-      <ion-input type="text" placeholder="Suche"></ion-input>
+      <ion-input [(ngModel)]="searchTerm"  type="text" placeholder="Suchbegriff"></ion-input>
     </ion-item>
+    <div padding>
+      <button ion-button block (click)="search(searchTerm)">Suche</button>
+    </div>
   </ion-card-content>
 </ion-card>
