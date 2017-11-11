@@ -37,10 +37,32 @@ namespace LocalBookShopImport.Model
                 }
             }
 
+            if (Genre != null)
+            {
+                foreach (var genreUrl in Genre)
+                {
+                    var genre = Database.FindGenre(genreUrl);
+
+                    if (genre == null)
+                    {
+                        continue;
+                    }
+
+                    var relation = GetApi().Dispense("book_genre");
+                    relation["id_genre"] = genre.Id;
+                    relation["id_book"] = Id;
+
+                    GetApi().Store(relation);
+                }
+            }
+
             //});
         }
 
         public List<Author> Authors { get; set; }
+        
+        public List<string> Genre { get; set; }
+        
         public int Id => Get<int>("id");
 
         public string Title

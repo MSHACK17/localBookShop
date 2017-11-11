@@ -53,5 +53,10 @@ namespace LocalBookShopImport
             }
            
         }
+
+        public static Genre FindGenre(string ObUrl)
+        {
+            return DbConnection.FindOne<Genre>("WHERE ob_url = {0}", ObUrl);
+        }
     }
 }
