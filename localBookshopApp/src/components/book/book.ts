@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Book} from "../../models/book";
+import {NavController} from "ionic-angular";
+import {DetailPage} from "../../pages/detail/detail";
 
 /**
  * Generated class for the BookComponent component.
@@ -13,9 +15,11 @@ import {Book} from "../../models/book";
 })
 export class BookComponent {
   @Input() book:Book;
-  constructor() {
+  constructor(public navCtrl: NavController) {
+  }
 
-    console.log('Hello BookComponent Component');
+  showBookDetail(){
+    this.navCtrl.push(DetailPage,this.book);
   }
 
 }

@@ -1,4 +1,5 @@
-﻿using LimeBean;
+﻿using System;
+using LimeBean;
 using LocalBookShopImport.Model;
 using Npgsql;
 
@@ -36,6 +37,21 @@ namespace LocalBookShopImport
         public static Storage FindStoreRelation(int shopId, int bookId)
         {
             return DbConnection.FindOne<Storage>("WHERE id_shop = {0} and id_book = {1}", shopId, bookId);
+        }
+
+        public static bool DeleteAmount(int shopId)
+        {
+            try
+            {
+                DbConnection.Exec("delete from storage where id_shop = {0}", shopId);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Fehler: "+e);
+                return false;
+            }
+           
         }
     }
 }
