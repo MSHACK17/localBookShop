@@ -12,4 +12,18 @@
       <agm-marker *ngFor="let shop of shopObjects" [label]="shop.name" [latitude]="shop.position?.lat" [longitude]="shop.position?.long" (markerClick)="showShopDetail(shop)"></agm-marker>
 
     </agm-map>
-
+<br>
+ <br>
+<ion-list >
+  <ion-row *ngFor="let shop of shopObjects">
+    <ion-col width-30>
+      {{shop.name}}
+    </ion-col>
+    <ion-col width-30>
+      {{shop.duration}}
+    </ion-col>
+    <ion-col width-30>
+      {{shop.distance}}
+    </ion-col>
+  </ion-row>
+</ion-list>
