@@ -1,7 +1,12 @@
 import {Component,  Input} from '@angular/core';
 import {Book} from "../../models/book";
 import {Shop} from "../../models/shop";
+
 import {HttpClient} from "@angular/common/http";
+
+import { ModalController } from 'ionic-angular';
+import {ShopDetailPage} from "../../pages/shop-detail/shop-detail";
+
 
 /**
  * Generated class for the BookDetailComponent component.
@@ -37,9 +42,10 @@ export class BookDetailComponent {
 
   shopObjects:any;
 
+  constructor(private http:HttpClient,public modalCtrl: ModalController) {
 
-  constructor(private http:HttpClient) {
   }
+
   ngAfterContentInit(){
     console.info(this.book);
     this.shopObjects = [];
@@ -86,7 +92,8 @@ export class BookDetailComponent {
   console.log(this.shopObjects);
   }
   showShopDetail(shop:any){
-    console.info(shop);
+    let modal = this.modalCtrl.create(ShopDetailPage, {shop: shop, book: this.book});
+    modal.present();
   };
 
 

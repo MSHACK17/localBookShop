@@ -19,6 +19,7 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import {HttpClientModule} from "@angular/common/http";
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import {AgmCoreModule} from "@agm/core";
+import {ShopDetailPage} from "../pages/shop-detail/shop-detail";
 
 @NgModule({
   declarations: [
@@ -31,11 +32,13 @@ import {AgmCoreModule} from "@agm/core";
     BookComponent,
     BookDetailComponent,
     SearchResultPage,
-    DetailPage
+    DetailPage,
+    ShopDetailPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      backButtonText: 'Zurück'}),
     HttpClientModule,
     ApolloModule,
     HttpLinkModule,
@@ -51,7 +54,8 @@ import {AgmCoreModule} from "@agm/core";
     SearchResultPage,
     DetailPage,
     StartPage,
-    SearchResultPage
+    SearchResultPage,
+    ShopDetailPage
   ],
   providers: [
     StatusBar,

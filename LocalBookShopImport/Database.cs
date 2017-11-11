@@ -33,6 +33,17 @@ namespace LocalBookShopImport
         {
             return DbConnection.FindOne<Book>("WHERE isbn_10 = {0} OR isbn_13 = {0}", isbn);
         }
+        
+        public static Book FindBookByIsbn10IsNull()
+        {
+            return DbConnection.FindOne<Book>("WHERE isbn_10 IS null");
+        }
+        
+        public static Book FindBookByIsbn13IsNull()
+        {
+            return DbConnection.FindOne<Book>("WHERE isbn_13 IS null");
+        }
+        
 
         public static Storage FindStoreRelation(int shopId, int bookId)
         {

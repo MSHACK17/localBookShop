@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
+    <Compile Include="ISBN.cs" />
     <Compile Include="ImportCSV.cs" />
     <Compile Include="Model\Author.cs" />
     <Compile Include="Model\Book.cs" />

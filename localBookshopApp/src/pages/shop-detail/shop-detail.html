@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Händler
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding class="background">
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+        {{shop?.name}}
+      </ion-card-title>
+      <p>{{shop?.street}}</p>
+      <p>{{shop?.zip}} {{shop?.city}}</p>
+      <button ion-button block icon-left>
+        <ion-icon name="bicycle"></ion-icon>
+        Navigieren
+      </button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-icon name='md-book' item-start style="color: #d03e84"></ion-icon>
+        Bestand
+        <ion-badge item-end>{{shop?.amount}}</ion-badge>
+      </ion-item>
+      <img *ngIf="book?.imageUrl" [src]="book?.imageUrl">
+      <img *ngIf="!book?.imageUrl" src="/assets/imgs/no-cover.png">
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
