@@ -1,14 +1,9 @@
 ﻿using LimeBean;
-using LocalBookShopImport.Models;
+using LocalBookShopImport.Model;
 using Npgsql;
 
 namespace LocalBookShopImport
 {
-    public enum Table
-    {
-        Author, Book, Genre, Publisher, Shop, Storage   
-    }
-    
     public static class Database
     {        
         private static readonly BeanApi DbConnection;
@@ -33,10 +28,14 @@ namespace LocalBookShopImport
             return DbConnection.Dispense<T>();
         }
 
-        public static Book findBook(string isbn)
+        public static Book FindBook(string isbn)
         {
-            return DbConnection.FindOne<Book>("book", "where isbn_10 = {0} or isbn_13 = {0}", isbn);
+            return DbConnection.FindOne<Book>("WHERE isbn_10 = {0} OR isbn_13 = {0}", isbn);
         }
-        
+
+        public static Storage FindStoreRelation(int shopId, int bookId)
+        {
+            return DbConnection.FindOne<Storage>("WHERE id_shop = {0} and id_book = {1}", shopId, bookId);
+        }
     }
 }

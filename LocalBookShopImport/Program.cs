@@ -1,4 +1,3 @@
-using LocalBookShopImport.Models;
 using System;
 using System.Data;
 
@@ -9,8 +8,8 @@ namespace LocalBookShopImport
         public static void Main(string[] args)
         {
             OpenLibraryBooksAPI api = new OpenLibraryBooksAPI();
-            DataTable dttemp = api.SearchBook("0072435097").Result;
-            Console.Write(dttemp.ToString());
+            var book = api.SearchBook("0072435097");
+            //Console.Write(dttemp.ToString());
         
             /*
             var book = Database.CreateBeam<Book>();

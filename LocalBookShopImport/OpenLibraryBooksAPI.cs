@@ -1,34 +1,38 @@
-﻿using System;
-using System.Data;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Reflection.Emit;
-using System.Threading;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
+﻿﻿using System;
+ using System.Globalization;
+ using System.Linq;
+ using LocalBookShopImport.Model;
+ using Newtonsoft.Json.Linq;
+ using RestSharp;
 
 namespace LocalBookShopImport
 {
-    public class OpenLibraryBooksAPI : IDisposable
+    public class OpenLibraryBooksAPI
     {
-        private HttpClient httpclient;
-        private HttpClientHandler httphandler;
-        private CookieContainer cookies;
-
-        public OpenLibraryBooksAPI()
+        public Book SearchBook(string isbn)
         {
-            httphandler = new HttpClientHandler();
-            cookies = new CookieContainer();
-            httphandler.CookieContainer = cookies;
-            httpclient = new HttpClient(httphandler) {Timeout = TimeSpan.FromSeconds(60)};
-        }
+            var client = new RestClient("https://openlibrary.org/api/");
+            
+            var request = new RestRequest("books", Method.GET);
+            request.AddParameter("bibkeys", "ISBN:" + isbn);
+            request.AddParameter("format", "json");
+            request.AddParameter("jscmd","data");
+            
+            var restResponse = client.Execute(request);
+            var jsonResponse = JObject.Parse(restResponse.Content);
 
-        public async Task<DataTable> SearchBook(string isbn)
-        {
+            var jsonarray = jsonResponse.Properties().First().Value;
+            var book = Database.CreateBeam<Book>();
+            book.Title = (string)jsonarray["title"];
+            book.ImageUrl = (string) jsonarray["small"];
+            book.PublicationDate = DateTime.ParseExact((string)jsonarray["publish_date"], "DD-MM-YYYY",CultureInfo.InvariantCulture);
+            book.ISBN10 = (string) jsonarray["identifiers"]["isbn_10"].First;
+            book.ISBN13 = (string) jsonarray["identifiers"]["isbn_13"].First;
+            
+            return null;
+
+
+            /*
             string url = @"https://openlibrary.org/api/books?bibkeys=ISBN:" + System.Net.WebUtility.UrlEncode(isbn) + "&format=json&jscmd=data";
             HttpResponseMessage httpresponsemsg = null;
             //Book returnBook = new Book();
@@ -46,7 +50,7 @@ namespace LocalBookShopImport
                 return null;
             }
             if(httpresponsemsg.IsSuccessStatusCode)
-            {
+            
                 string content = await httpresponsemsg.Content.ReadAsStringAsync();
                 Console.Write(content);
                 if (content == "{}")
@@ -97,15 +101,16 @@ namespace LocalBookShopImport
                 //data = JsonConvert.DeserializeObject<DataTable>(content);
                 return null;
             }
-            return null;
-        }
-        
+        */
 
+        }
+        /*
         public void Dispose()
         {
             httpclient?.CancelPendingRequests();
             httpclient?.Dispose();
             httphandler?.Dispose();
         }
+        */
     }
 }
