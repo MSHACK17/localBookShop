@@ -12,12 +12,12 @@ import {GenreCardComponent} from "../components/genre-card/genre-card";
 import {BookListComponent} from "../components/book-list/book-list";
 import {BookComponent} from "../components/book/book";
 import {SearchResultPage} from "../pages/search-result/search-result";
+import {DetailPage} from "../pages/detail/detail";
+import {BookDetailComponent} from "../components/book-detail/book-detail";
 import {Apollo, ApolloModule} from "apollo-angular";
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import {HttpClientModule} from "@angular/common/http";
 import { InMemoryCache } from 'apollo-cache-inmemory';
-
-
 
 @NgModule({
   declarations: [
@@ -28,7 +28,9 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
     GenreCardComponent,
     BookListComponent,
     BookComponent,
-    SearchResultPage
+    BookDetailComponent,
+    SearchResultPage,
+    DetailPage
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    SearchResultPage,
+    DetailPage,
     StartPage,
     SearchResultPage
   ],

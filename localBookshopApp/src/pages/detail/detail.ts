@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Book} from "../../models/book";
-import {SearchResult} from "../../models/searchResult";
 
 /**
- * Generated class for the SearchResultPage page.
+ * Generated class for the DetailPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -12,18 +11,15 @@ import {SearchResult} from "../../models/searchResult";
 
 @IonicPage()
 @Component({
-  selector: 'page-search-result',
-  templateUrl: 'search-result.html',
+  selector: 'page-detail',
+  templateUrl: 'detail.html',
 })
-export class SearchResultPage {
+export class DetailPage {
 
-  books: Book[] = [];
-  resultName: string;
+  book:Book;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    let searchResult:SearchResult = navParams.data;
-    this.books = searchResult.books;
-    this.resultName = searchResult.resultName;
+    this.book = navParams.data;
   }
 
   ionViewDidLoad() {

@@ -1,4 +1,5 @@
-using LocalBookShopImport.Models;
+using System;
+using System.Data;
 
 namespace LocalBookShopImport
 {
@@ -6,20 +7,32 @@ namespace LocalBookShopImport
     {
         public static void Main(string[] args)
         {
+            OpenLibraryBooksAPI api = new OpenLibraryBooksAPI();
+            var book = api.SearchBook("0072435097");
+            Database.Save(book);
+
+            /*
             var book = Database.CreateBeam<Book>();
             book.Title = "tt";
             book.Author = Database.CreateBeam<Author>();
             book.Author.Name = "pw";
             book.Author.Url = "123";
-            
-            /*
-            OpenLibraryBooksAPI api = new OpenLibraryBooksAPI();
-            DataTable dttemp = api.SearchBook("0072435097").Result;
-            Console.Write(dttemp.ToString());
+  
             var book = Database.Create(Table.Book);
             book["title"] = "test! ;)";
 
             Database.Save(book);
+            */
+            /*
+            ImportCSV importCsv = new ImportCSV();
+            if (importCsv.ReadCsv(1, @"..\..\buecher.csv"))
+            {
+                Console.WriteLine("Import erfolgreich");
+            }
+            else
+            {
+                Console.WriteLine("Import nicht erfolgreich");
+            }
             */
         }
     }

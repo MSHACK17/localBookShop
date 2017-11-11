@@ -1,40 +1,47 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
+using System.Collections.Generic;
 using LimeBean;
 
-namespace LocalBookShopImport.Models
+namespace LocalBookShopImport.Model
 {
     public class Book : Bean
     {
         public Book() : base("book") { }
 
-        protected override void BeforeStore()
-        {
-            if (string.IsNullOrWhiteSpace(Author?.Url))
-            {
-                throw new Exception("Author is empty!");
-            }
-        }
-
         protected override void AfterStore()
         {
-            var author = GetApi().FindOne<Author>("WHERE ob_url = {0}", Author.Url);
-
-            if (author == null)
+            //GetApi().Transaction(() =>
+            //{
+            if (Authors != null)
             {
-                GetApi().Store(Author);
-                author = Author;
+                foreach (var author in Authors)
+                {
+                    if (string.IsNullOrWhiteSpace(author?.Url))
+                    {
+                        continue;
+                    }
+
+                    var dbAuthor = GetApi().FindOne<Author>("WHERE ob_url = {0}", author.Url);
+
+                    if (dbAuthor == null)
+                    {
+                        GetApi().Store(author);
+                        dbAuthor = author;
+                    }
+
+                    var relation = GetApi().Dispense("book_author");
+                    relation["id_author"] = dbAuthor.Id;
+                    relation["id_book"] = Id;
+
+                    GetApi().Store(relation);
+                }
             }
 
-            var relation = GetApi().Dispense("book_author");
-            relation["id_author"] = author.Id;
-            relation["id_book"] = Id;
-
-            GetApi().Store(relation);
+            //});
         }
 
-        public Author Author { get; set; }
-        private int Id => Get<int>("id");
+        public List<Author> Authors { get; set; }
+        public int Id => Get<int>("id");
 
         public string Title
         {
