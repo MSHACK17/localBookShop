@@ -43,15 +43,14 @@ namespace LocalBookShopImport
         {
             try
             {
-                DbConnection.Exec("delete from storage where id_shop = {0}", shopId);
+                DbConnection.Exec("DELETE FROM storage WHERE id_shop = {0}", shopId);
                 return true;
             }
             catch (Exception e)
             {
-                Console.WriteLine("Fehler: "+e);
+                Console.WriteLine("Fehler: " + e);
                 return false;
             }
-           
         }
 
         public static Genre FindGenre(string ObUrl)
