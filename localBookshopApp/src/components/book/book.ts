@@ -39,7 +39,6 @@ export class BookComponent {
     }).subscribe(({data, loading}) => {
       let result = data as any;
       let shops = result.bookById.shops.nodes;
-      console.log(shops)
       this.navCtrl.push(DetailPage,{book:this.book, shops: shops})
     });
   }
