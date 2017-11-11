@@ -1,7 +1,7 @@
 <ion-card>
 
-
-<h2>{{book?.title}}</h2>
+<ion-card-content>
+  <ion-card-title>{{book?.title}}</ion-card-title>
   <ion-grid>
     <ion-row>
       <ion-col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12>
@@ -23,6 +23,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+</ion-card-content>
 </ion-card>
  <ion-card>
    <agm-map  [zoom]="14" [latitude]="lat" [longitude]="lng">
