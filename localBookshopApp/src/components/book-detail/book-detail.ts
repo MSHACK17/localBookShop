@@ -1,6 +1,8 @@
 import {Component,  Input} from '@angular/core';
 import {Book} from "../../models/book";
 import {Shop} from "../../models/shop";
+import { ModalController } from 'ionic-angular';
+import {ShopDetailPage} from "../../pages/shop-detail/shop-detail";
 
 /**
  * Generated class for the BookDetailComponent component.
@@ -33,8 +35,9 @@ export class BookDetailComponent {
   shopObjects:any;
 
 
-  constructor() {
+  constructor(public modalCtrl: ModalController) {
   }
+
   ngAfterContentInit(){
     console.info(this.book);
     this.shopObjects = [];
@@ -55,7 +58,8 @@ export class BookDetailComponent {
 
   }
   showShopDetail(shop:any){
-    console.info(shop);
+    let modal = this.modalCtrl.create(ShopDetailPage, {shop: shop, book: this.book});
+    modal.present();
   };
 
 
