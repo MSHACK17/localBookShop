@@ -7,7 +7,9 @@
 
     <agm-map  [zoom]="12" [latitude]="lat" [longitude]="lng">
       <agm-marker [iconUrl]="'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'" [latitude]="lat" [longitude]="lng"></agm-marker>
-      <agm-marker label="title" [latitude]="51.953308" [longitude]="7.644517" ></agm-marker>
+
+
+      <agm-marker *ngFor="let shop of shopObjects" [label]="shop.name" [latitude]="shop.position?.lat" [longitude]="shop.position?.long" (markerClick)="showShopDetail(shop)"></agm-marker>
 
     </agm-map>
 
