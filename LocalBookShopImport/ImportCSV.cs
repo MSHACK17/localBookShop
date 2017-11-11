@@ -1,7 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
 using System.IO;
-using System.Linq.Expressions;
+using LocalBookShopImport.Models;
 
 namespace LocalBookShopImport
 {
@@ -16,22 +15,30 @@ namespace LocalBookShopImport
                 if (File.Exists(path))
                 {
                     csvReader = new StreamReader(path);
+                    String[] line;
                     while (csvReader.Peek() >= 0)
                     {
-                        String[] line = csvReader.ReadLine().Split(';');
+                        line = csvReader.ReadLine().Split(';');
                         var book = Database.findBook(line[0]);
-                        var storage = Database.Create(Table.Storage);
-                        storage["id_shop"] = shopId;
-                        storage["id_book"] = book["id"];
-                        storage["amount"] = line[1];
-                        Database.Save(storage);
+                        if (book != null)
+                        {
+                            var storage = Database.CreateBeam<Storage>();
+                            storage.ShopId = shopId;
+                            storage.BookId = book.Id;
+                            storage.amount = int.Parse(line[1]);
+                            Database.Save(storage);
+                        }
                     }
-                    return true;
                 }
+                else
+                {
+                    Console.WriteLine("CSV-Datei nicht gefunden!");
+                    return false;
+                }
+                return true;
             }
             catch (Exception e)
             {
-                return false;
                 Console.WriteLine("Fehler: " + e.ToString());
             }
             return false;

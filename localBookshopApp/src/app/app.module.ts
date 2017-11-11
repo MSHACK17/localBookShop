@@ -14,6 +14,11 @@ import {SearchResultPage} from "../pages/search-result/search-result";
 import {DetailPage} from "../pages/detail/detail";
 import {BookDetailComponent} from "../components/book-detail/book-detail";
 
+import {Apollo, ApolloModule} from "apollo-angular";
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+import {HttpClientModule} from "@angular/common/http";
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -28,6 +33,9 @@ import {BookDetailComponent} from "../components/book-detail/book-detail";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule,
+    ApolloModule,
+    HttpLinkModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,4 +52,14 @@ import {BookDetailComponent} from "../components/book-detail/book-detail";
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(
+    apollo: Apollo,
+    httpLink: HttpLink
+  ) {
+    apollo.create({
+      link: httpLink.create({ uri: 'http://172.16.2.200:5000/graphql' }),
+      cache: new InMemoryCache()
+    });
+  }
+}
