@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {NavController} from "ionic-angular";
+import {Genre} from "../../models/genre";
 /**
  * Generated class for the GenreComponent component.
  *
@@ -12,11 +13,9 @@ import {NavController} from "ionic-angular";
 })
 export class GenreComponent {
 
-  text: string;
+  @Input('genres') genres: Genre[];
 
   constructor(public navController: NavController) {
-    console.log('Hello GenreComponent Component');
-    this.text = 'Hello World';
   }
 
   goToPage(){

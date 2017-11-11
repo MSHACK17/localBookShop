@@ -8,7 +8,7 @@ namespace LocalBookShopImport
         public static void Main(string[] args)
         {
             OpenLibraryBooksAPI api = new OpenLibraryBooksAPI();
-            var book = api.SearchBook("0072435097");
+            var book = api.SearchBook("");
             Database.Save(book);
 
             /*

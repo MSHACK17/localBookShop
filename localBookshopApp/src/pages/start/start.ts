@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
+import {Genre} from "../../models/genre";
 /**
  * Generated class for the StartPage page.
  *
@@ -16,22 +17,24 @@ import gql from 'graphql-tag';
 })
 export class StartPage {
 
+  genres: Genre[];
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private apollo: Apollo) {
     this.apollo.query({
       query: gql`{
-          books:allBooks {
+          genres:allGenres {
             nodes{
-              title
+              name
             }
           }
       }`
     }).subscribe(({data, loading}) => {
-      console.log(data)
+      let result = data as any;
+      this.genres = result.genres.nodes;
     });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad StartPage');
   }
 
 }
