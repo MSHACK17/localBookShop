@@ -14,7 +14,6 @@ import {BookComponent} from "../components/book/book";
 import {SearchResultPage} from "../pages/search-result/search-result";
 import {DetailPage} from "../pages/detail/detail";
 import {BookDetailComponent} from "../components/book-detail/book-detail";
-
 import {Apollo, ApolloModule} from "apollo-angular";
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import {HttpClientModule} from "@angular/common/http";
@@ -44,7 +43,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
   entryComponents: [
     MyApp,
     SearchResultPage,
-    DetailPage
+    DetailPage,
     StartPage,
     SearchResultPage
   ],
