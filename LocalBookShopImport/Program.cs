@@ -9,8 +9,8 @@ namespace LocalBookShopImport
         {
             OpenLibraryBooksAPI api = new OpenLibraryBooksAPI();
             var book = api.SearchBook("0072435097");
-            //Console.Write(dttemp.ToString());
-        
+            Database.Save(book);
+
             /*
             var book = Database.CreateBeam<Book>();
             book.Title = "tt";
@@ -22,9 +22,10 @@ namespace LocalBookShopImport
             book["title"] = "test! ;)";
 
             Database.Save(book);
-            
+            */
+            /*
             ImportCSV importCsv = new ImportCSV();
-            if (importCsv.readCSV(@"..\..\buecher.csv", 1))
+            if (importCsv.ReadCsv(1, @"..\..\buecher.csv"))
             {
                 Console.WriteLine("Import erfolgreich");
             }

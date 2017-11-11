@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net.Http;
 using LocalBookShopImport.Model;
 
 namespace LocalBookShopImport
@@ -9,30 +10,47 @@ namespace LocalBookShopImport
         private StreamReader csvReader;
         private OpenLibraryBooksAPI api = new OpenLibraryBooksAPI();
 
-        public bool ReadCsv(string path, int shopId)
+        public bool ReadCsv(int shopId, Stream content)
+        {
+            csvReader = new StreamReader(content);
+            return ReadCsv(shopId, csvReader);
+        }
+
+        public bool ReadCsv(int shopId, string path)
+        {
+            if (File.Exists(path))
+            {
+                csvReader = new StreamReader(path);
+                return ReadCsv(shopId, csvReader);
+            }
+            
+            Console.WriteLine("Plüth sagt das gibt nicht!");
+            return false;
+        }
+
+        public bool ReadCsv(int shopId, StreamReader conetent)
         {
             try
             {
-                if (File.Exists(path))
+                csvReader = conetent;
+                string line;
+                if (!Database.DeleteAmount(shopId))
                 {
-                    csvReader = new StreamReader(path);
-                    string line;
-                    
-                    while ((line = csvReader.ReadLine()) != null)
+                    return false;
+                }
+                
+                while ((line = csvReader.ReadLine()) != null)
+                {
+                    var split = csvReader.ReadLine()?.Split(';');
+
+                    if (split != null && split.Length == 2)
                     {
-                        var split = csvReader.ReadLine()?.Split(';');
-
-                        if (split != null && line.Length == 2)
-                        {
-                            InsertBookRelation(shopId, split[0], int.Parse(split[1]));
-                        }
+                        InsertBookRelation(shopId, split[0], int.Parse(split[1]));
                     }
-
-                    return true;
                 }
 
-                Console.WriteLine("CSV-Datei nicht gefunden!");
-                return false;
+                return true;
+
             }
             catch (Exception e)
             {
@@ -45,7 +63,7 @@ namespace LocalBookShopImport
         private void InsertBookRelation(int shopId, string bookIsbn, int amount)
         {
             var book = Database.FindBook(bookIsbn);
-
+            
             if (book == null)
             {
                 book = api.SearchBook(bookIsbn);
@@ -55,7 +73,7 @@ namespace LocalBookShopImport
                 {
                     return;
                 }
-                
+
                 Database.Save(book);
             }
 
@@ -67,7 +85,7 @@ namespace LocalBookShopImport
                 relation.ShopId = shopId;
                 relation.BookId = book.Id;
             }
-            
+
             relation.Amount = amount;
             Database.Save(relation);
         }

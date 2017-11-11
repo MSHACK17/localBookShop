@@ -10,15 +10,17 @@ namespace LocalBookShopImport.Model
 
         protected override void AfterStore()
         {
-            GetApi().Transaction(() =>
+            //GetApi().Transaction(() =>
+            //{
+            if (Authors != null)
             {
                 foreach (var author in Authors)
                 {
                     if (string.IsNullOrWhiteSpace(author?.Url))
                     {
-                        return false;
+                        continue;
                     }
-                    
+
                     var dbAuthor = GetApi().FindOne<Author>("WHERE ob_url = {0}", author.Url);
 
                     if (dbAuthor == null)
@@ -33,9 +35,9 @@ namespace LocalBookShopImport.Model
 
                     GetApi().Store(relation);
                 }
+            }
 
-                return true;
-            });
+            //});
         }
 
         public List<Author> Authors { get; set; }
