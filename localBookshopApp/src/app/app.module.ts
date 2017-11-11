@@ -44,7 +44,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
   entryComponents: [
     MyApp,
     SearchResultPage,
-    DetailPage
+    DetailPage,
     StartPage,
     SearchResultPage
   ],
