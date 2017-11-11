@@ -40,7 +40,12 @@ namespace LocalBookShopImport.Model
             //});
         }
 
-        public List<Author> Authors { get; set; }
+        private List<Author> _authors = new List<Author>();
+
+        public List<Author> Authors
+        {
+            get { return _authors; }
+        }
         public int Id => Get<int>("id");
 
         public string Title
