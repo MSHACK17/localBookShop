@@ -52,14 +52,19 @@ namespace LocalBookShopImport.Model
             {
                 var publisher = Database.FindPublisher(Publisher);
 
-                if (publisher != null)
+                if (publisher == null)
                 {
-                    var relation = GetApi().Dispense("book_publisher");
-                    relation["id_publisher"] = publisher.Id;
-                    relation["id_book"] = Id;
+                    publisher = Database.CreateBeam<Publisher>();
+                    publisher.Name = Publisher;
 
-                    Database.Save(relation);
+                    Database.Save(publisher);
                 }
+
+                var relation = GetApi().Dispense("book_publisher");
+                relation["id_publisher"] = publisher.Id;
+                relation["id_book"] = Id;
+
+                Database.Save(relation);
             }
         }
 

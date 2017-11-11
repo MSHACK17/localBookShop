@@ -1,6 +1,6 @@
 import {Component,  Input} from '@angular/core';
 import {Book} from "../../models/book";
-import {sharedStylesheetJitUrl} from "@angular/compiler";
+import {Shop} from "../../models/shop";
 
 /**
  * Generated class for the BookDetailComponent component.
@@ -23,21 +23,40 @@ export class BookDetailComponent {
   strokeColor: '#FF0000';
   fillColor: '#FF0000';
 
-  shop:{title:"test"};
 
 
 
 
   @Input() book:Book;
+  @Input() shops:Shop[];
+
+  shopObjects:any;
+
 
   constructor() {
   }
   ngAfterContentInit(){
     console.info(this.book);
+    this.shopObjects = [];
+
+    this.shops.forEach((shop)=>{
+      console.log(shop);
+      console.log(JSON.parse(shop.position));
+      this.shopObjects.push({
+        id:  shop.id,
+        name: shop. name,
+        city: shop.city,
+        zip: shop.zip,
+        street: shop.street,
+        position: shop.position != null ? JSON.parse(shop.position) : null,
+        amount: shop.amount
+      })
+    })
 
   }
-  showInfo(shop:any){
-    console.info(shop.title);
-  }
+  showShopDetail(shop:any){
+    console.info(shop);
+  };
+
 
 }
